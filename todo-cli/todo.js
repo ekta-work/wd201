@@ -8,18 +8,18 @@ const todoList = () => {
     }
   
     const overdue = () => {
-        const today = new Date().toISOString().split("T")[0];
-        return all.filter((item) => !item.completed && item.dueDate < today);
+      const today = new Date().toISOString().split("T")[0];
+      return all.filter((item) => !item.completed && item.dueDate < today);
     }
   
     const dueToday = () => {
-        const today = new Date().toISOString().split('T')[0];
-        return all.filter((item) => item.dueDate === today);
+      const today = new Date().toISOString().split('T')[0];
+      return all.filter((item) => item.dueDate === today);
     }
   
     const dueLater = () => {
-        const today = new Date().toISOString().split("T")[0];
-        return all.filter((item) => !item.completed && item.dueDate > today);
+      const today = new Date().toISOString().split("T")[0];
+      return all.filter((item) => !item.completed && item.dueDate > today);
     }
   
     const toDisplayableList = (list) => {
@@ -30,7 +30,7 @@ const todoList = () => {
             output += `${checkbox} ${item.title}${formattedDueDate}\n`;
             });
         return output;
-  };
+    }
   
     return {
       all,
