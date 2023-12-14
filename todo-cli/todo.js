@@ -23,15 +23,18 @@ const todoList = () => {
     }
   
     const toDisplayableList = (list) => {
-        let output = "";
-        list.forEach((item) => {
-          const checkbox = item.completed ? "[x]" : "[ ]";
-          const formattedDueDate = item.dueDate === new Date().toISOString().split("T")[0] ? "" : ` ${item.dueDate}`;
-          output += `${checkbox} ${item.title}${formattedDueDate}\n`;
-        });
-    
-        return output;
-    }
+    let output = "";
+    list.forEach((item) => {
+      const checkbox = item.completed ? "[x]" : "[ ]";
+      const formattedDueDate =
+        item.dueDate === new Date().toISOString().split("T")[0]
+          ? ""
+          : ` ${item.dueDate}`;
+      output += `${checkbox} ${item.title}${formattedDueDate}\n`;
+    });
+
+    return output;
+  }
   
     return {
       all,
