@@ -14,7 +14,7 @@ const todoList = () => {
   
     const dueToday = () => {
         const today = new Date().toISOString().split('T')[0];
-        return all.filter((item) => !item.completed && new Date(item.dueDate) < new Date(today));
+        return all.filter((item) => !item.completed && item.dueDate === today);
     }
   
     const dueLater = () => {
@@ -23,16 +23,14 @@ const todoList = () => {
     }
   
     const toDisplayableList = (list) => {
-      let output = '';
-    list.forEach((item) => {
-      if (item.dueDate === new Date().toISOString().split('T')[0]) {
-        output += `[x] ${item.title}\n`;
-      } else {
-        output += `[ ] ${item.title} ${item.dueDate}\n`;
-      }
-    });
-    return output;
-  }
+        let output = '';
+        list.forEach((item) => {
+            const formattedDueDate = item.dueDate === new Date().toISOString().split('T')[0] ? '' : ` ${item.dueDate}`;
+            const checkbox = item.completed ? '[x]' : '[ ]';
+            output += `${checkbox} ${item.title}${formattedDueDate}\n`;
+            });
+        return output;
+  };
   
     return {
       all,
