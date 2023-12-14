@@ -9,27 +9,24 @@ const todoList = () => {
   
     const overdue = () => {
       const today = new Date().toISOString().split("T")[0];
-      return all.filter((item) => !item.completed && item.dueDate < today);
+      const overdueTasks = all.filter((item) => !item.completed && item.dueDate < today);
+      return overdueTasks.map((task) => `${task.completed ? '[x]' : '[ ]'} ${task.title}${task.dueDate === today ? '' : ` ${task.dueDate}`}`).join('\n');
     }
   
     const dueToday = () => {
-      const today = new Date().toISOString().split('T')[0];
-      return all.filter((item) => item.dueDate === today);
+      const today = new Date().toISOString().split("T")[0];
+      const todayTasks = all.filter((item) => item.dueDate === today);
+      return todayTasks.map((task) => `${task.completed ? '[x]' : '[ ]'} ${task.title}`).join('\n');
     }
   
     const dueLater = () => {
       const today = new Date().toISOString().split("T")[0];
-      return all.filter((item) => !item.completed && item.dueDate > today);
+      const laterTasks = all.filter((item) => !item.completed && item.dueDate > today);
+      return laterTasks.map((task) => `${task.completed ? '[x]' : '[ ]'} ${task.title} ${task.dueDate}`).join('\n');
     }
   
     const toDisplayableList = (list) => {
-        let output = '';
-        list.forEach((item) => {
-            const formattedDueDate = item.dueDate === new Date().toISOString().split('T')[0] ? '' : ` ${item.dueDate}`;
-            const checkbox = item.completed ? '[x]' : '[ ]';
-            output += `${checkbox} ${item.title}${formattedDueDate}\n`;
-            });
-        return output;
+        return list.map((item) => `${item.completed ? '[x]' : '[ ]'} ${item.title}${item.dueDate === today ? '' : ` ${item.dueDate}`}`).join('\n');
     }
   
     return {
