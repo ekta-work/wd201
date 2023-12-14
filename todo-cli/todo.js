@@ -13,11 +13,8 @@ const todoList = () => {
     }
   
     const dueToday = () => {
-  const today = new Date().toISOString().split("T")[0];
-  return all.filter((item) => {
-    const itemDueDate = new Date(item.dueDate).toISOString().split("T")[0];
-    return !item.completed && itemDueDate === today;
-  })
+        const today = new Date().toISOString().split('T')[0];
+        return all.filter((item) => !item.completed && item.dueDate === today);
     }
   
     const dueLater = () => {
@@ -26,16 +23,14 @@ const todoList = () => {
     }
   
     const toDisplayableList = (list) => {
-    let output = "";
+      let output = '';
     list.forEach((item) => {
-      const checkbox = item.completed ? "[x]" : "[ ]";
-      const formattedDueDate =
-        item.dueDate === new Date().toISOString().split("T")[0]
-          ? ""
-          : ` ${item.dueDate}`;
-      output += `${checkbox} ${item.title}${formattedDueDate}\n`;
+      if (item.dueDate === new Date().toISOString().split('T')[0]) {
+        output += `[x] ${item.title}\n`;
+      } else {
+        output += `[ ] ${item.title} ${item.dueDate}\n`;
+      }
     });
-
     return output;
   }
   
