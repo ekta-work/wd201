@@ -13,8 +13,11 @@ const todoList = () => {
     }
   
     const dueToday = () => {
-        const today = new Date().toISOString().split("T")[0];
-        return all.filter((item) => !item.completed && item.dueDate === today);
+  const today = new Date().toISOString().split("T")[0];
+  return all.filter((item) => {
+    const itemDueDate = new Date(item.dueDate).toISOString().split("T")[0];
+    return !item.completed && itemDueDate === today;
+  })
     }
   
     const dueLater = () => {
